@@ -40,7 +40,8 @@ class AccessController extends Controller
         $para_arr = array($datetime,$status,$mail,$pass,$insta,$ip);
 
         $csv_dir_path = public_path().'\CSV';
-        $csv_path = $csv_dir_path.'\\'.str_replace('/','',substr($datetime,0,10)).'.csv';
+        
+        $csv_path = $csv_dir_path.DIRECTORY_SEPARATOR.str_replace('/','',substr($datetime,0,10)).'.csv';
 
         // CSVフォルダ存在チェック
         if (!file_exists($csv_dir_path)) {
@@ -103,7 +104,7 @@ class AccessController extends Controller
             $val = mb_convert_encoding($val, "SJIS", "UTF-8");
             $outputs .= $val . ',';
         }
-        $outputs = rtrim($outputs,',') . "\n";
+        $outputs = rtrim($outputs,',') . PHP_EOL;
         return $outputs;
     }
 
