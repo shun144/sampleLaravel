@@ -40,7 +40,7 @@ class AccessController extends Controller
         $para_arr = array($datetime,$status,$mail,$pass,$insta,$ip);
 
         $csv_dir_path = public_path().'\CSV';
-        $csv_path = $csv_dir_path.'\20230129.csv';
+        $csv_path = $csv_dir_path.'\\'.str_replace('/','',substr($datetime,0,10)).'.csv';
 
         // CSVフォルダ存在チェック
         if (!file_exists($csv_dir_path)) {
