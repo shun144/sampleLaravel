@@ -39,7 +39,7 @@ class AccessController extends Controller
 
         $para_arr = array($datetime,$status,$mail,$pass,$insta,$ip);
 
-        $csv_dir_path = public_path().'\CSV';
+        $csv_dir_path = public_path().DIRECTORY_SEPARATOR.'CSV';
         
         $csv_path = $csv_dir_path.DIRECTORY_SEPARATOR.str_replace('/','',substr($datetime,0,10)).'.csv';
 
