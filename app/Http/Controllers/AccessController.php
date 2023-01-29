@@ -56,6 +56,7 @@ class AccessController extends Controller
         }
 
         return response()->json([
+            "csv" => $csv_path,
             "message" => $result
         ], 201);
     }
