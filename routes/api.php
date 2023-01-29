@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\AccessController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +13,7 @@ use App\Http\Controllers\OwnerController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::resource('owners', 'OwnerController');
+Route::post('access', [AccessController::class, 'store']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
