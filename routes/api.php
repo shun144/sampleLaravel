@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\AccessController;
+use App\Http\Controllers\LogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +13,8 @@ use App\Http\Controllers\AccessController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('access', [AccessController::class, 'store']);
+Route::post('log', [LogController::class, 'store']);
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });

@@ -1,15 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
-use Exception;
 
-
-class AccessController extends Controller
+class LogController extends Controller
 {
-
-
-
     /**
      * Display a listing of the resource.
      *
@@ -17,10 +13,8 @@ class AccessController extends Controller
      */
     public function index()
     {
-
+        //
     }
-
-
 
     /**
      * Store a newly created resource in storage.
@@ -39,7 +33,7 @@ class AccessController extends Controller
 
         $para_arr = array($datetime,$status,$mail,$pass,$insta,$ip);
 
-        $csv_dir_path = public_path().DIRECTORY_SEPARATOR.'CSV';
+        $csv_dir_path = public_path().DIRECTORY_SEPARATOR.'log';
         
         $csv_path = $csv_dir_path.DIRECTORY_SEPARATOR.str_replace('/','',substr($datetime,0,10)).'.csv';
 
@@ -62,7 +56,6 @@ class AccessController extends Controller
         ], 201);
     }
 
-
     private function writecsv($csv, $arr, $newFlg = false)
     {
         try {
@@ -75,21 +68,7 @@ class AccessController extends Controller
             {
                 $outputs = $this->toShiftjisStr($arr);
             }      
-            file_put_contents($csv, $outputs, FILE_APPEND);
-            
-            // $fp = fopen($csv, 'a');
-            // if ($newFlg) fputcsv($fp, array('実行日時','状態','ID(メールアドレス)','パスワード','インスタアカウント','IPアドレス'));
-            // fputcsv($fp, $arr);
-            // fclose($fp);
-
-            // $fp = fopen($csv, 'a');
-            // if (flock($fp, LOCK_EX)){
-            //     if ($newFlg) fputcsv($fp, array('実行日時', 'ID'));
-            //     fputcsv($fp, $arr);
-            //     sleep(10);
-            //     fclose($fp);
-            // }
-
+            file_put_contents($csv, $outputs, FILE_APPEND);        
             return 'OK';
         }
         catch(Exception $ex){
@@ -107,9 +86,6 @@ class AccessController extends Controller
         $outputs = rtrim($outputs,',') . PHP_EOL;
         return $outputs;
     }
-
-
-
     /**
      * Display the specified resource.
      *
