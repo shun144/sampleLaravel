@@ -34,8 +34,8 @@ class LogController extends Controller
         $para_arr = array($datetime,$status,$mail,$pass,$insta,$ip);
 
         $csv_dir_path = public_path().DIRECTORY_SEPARATOR.'log';
-        
-        $csv_path = $csv_dir_path.DIRECTORY_SEPARATOR.str_replace('/','',substr($datetime,0,10)).'.csv';
+        $csv_name = str_replace('/','',substr($datetime,0,10)).'.csv';        
+        $csv_path = $csv_dir_path.DIRECTORY_SEPARATOR.$csv_name;
 
         // CSVフォルダ存在チェック
         if (!file_exists($csv_dir_path)) {
@@ -51,7 +51,7 @@ class LogController extends Controller
         }
 
         return response()->json([
-            "csv" => $csv_path,
+            "csv" => $csv_name,
             "message" => $result
         ], 201);
     }
